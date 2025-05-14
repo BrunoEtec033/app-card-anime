@@ -1,20 +1,34 @@
+// App.js
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import CardAnime from './components/CardAnime';
+import animes from './data/animes.json';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <ScrollView style={styles.container}>
+      {
+        animes.map((anime) => (
+          <CardAnime
+            key={anime.id}
+            id={anime.id}
+            title={anime.title}
+            genre={anime.genre}
+            episodes={anime.episodes}
+            rating={anime.rating}
+            image={anime.image}
+          />
+        ))
+      }
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#f0f0f0',
+    padding: 16,
   },
 });
